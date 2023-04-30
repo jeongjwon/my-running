@@ -1,38 +1,247 @@
-.App {
-  text-align: center;
+.container {
+  background-color: rgba(0, 248, 125, 0.4);
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  padding: 2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 5rem;
+  background-color: aliceblue;
+  border: 0.3rem solid #2e2e2e;
+  border-radius: 2rem 2rem 0 0;
+  z-index: 1;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
 }
 
-.App-link {
-  color: #61dafb;
+@media only screen and (min-width: 768px) {
+  header {
+    top: 6rem;
+    width: calc(100% - 12rem);
+    height: 6rem;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media only screen and (min-width: 1280px) {
+  header {
+    top: 4rem;
+    width: calc(100% - 8rem);
+    max-width: 144rem;
   }
 }
+
+.header__deco {
+  position: absolute;
+  top: 1.3rem;
+  left: 1.5rem;
+  display: flex;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+
+@media only screen and (min-width: 768px) {
+  .header__deco {
+    top: 1.8rem;
+    left: 2rem;
+  }
+}
+
+.header__deco__close-btn {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  border: 0.2rem solid #2e2e2e;
+  border-radius: 50%;
+}
+
+.header__deco__close-btn:nth-child(1) {
+  background-color: #fb5f5f;
+}
+
+.header__deco__close-btn:nth-child(2) {
+  background-color: #fbcf5f;
+}
+
+.header__deco__close-btn:nth-child(3) {
+  background-color: #34c900;
+}
+
+.header__title {
+  color: #2e2e2e;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+
+@media only screen and (min-width: 768px) {
+  .header__title {
+    font-size: 1.8rem;
+  }
+}
+
+
+
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: aliceblue;
+  border: 0.3rem solid #2e2e2e;
+  border-radius: 2rem;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  scrollbar-width: none;
+}
+@media only screen and (min-width: 768px) {
+  .main {
+    width: calc(100% - 12rem);
+    height: calc(100% - 12rem);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .main {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 8rem);
+    max-width: 144rem;
+    height: calc(100% - 8rem);
+    overflow-y: hidden;
+  }
+}
+.main::-webkit-scrollbar {
+  display: none;
+}
+.main__visual {
+  margin-top: 5rem;
+  padding: 2rem;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+@media only screen and (min-width: 768px) {
+  .main__visual {
+    margin-top: 5.8rem;
+    padding: 4rem;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .main__visual {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .main__visual::-webkit-scrollbar {
+    display: none;
+  }
+}
+.main__visual .text-balloon {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  background-color: #f1ecde;
+  border: 0.3rem solid #2e2e2e;
+  border-radius: 2rem;
+  box-shadow: 0.3rem 0.4rem 0 0 #2e2e2e;
+}
+.main__visual .text-balloon__greeting {
+  padding: 4rem 4rem 3.2rem;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+@media only screen and (min-width: 768px) {
+  .main__visual .text-balloon__greeting {
+    padding: 8rem 8rem 4rem;
+  }
+}
+.main__visual .text-balloon__msg {
+  margin-bottom: 2rem;
+  font-size: 1.6rem;
+  font-weight: 300;
+  text-align: center;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+@media only screen and (min-width: 768px) {
+  .main__visual .text-balloon__msg {
+    margin-bottom: 4rem;
+    font-size: 2rem;
+  }
+}
+.main__visual .text-balloon__btn {
+  width: 13rem;
+  height: 4rem;
+  margin-bottom: 2rem;
+  background-color: rgba(226, 31, 126, 0.5);
+  border: 0.2rem solid #2e2e2e;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
+  transition: all 0.3s ease-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+.main__visual .text-balloon__btn:hover, .main__visual .text-balloon__btn:active {
+  background-color: rgba(226, 31, 126, 0.8);
+  box-shadow: 1px 1px 0px 0px #2e2e2e;
+}
+@media only screen and (min-width: 768px) {
+  .main__visual .text-balloon__btn {
+    width: 15rem;
+    height: 5rem;
+    margin-bottom: 4rem;
+  }
+}
+.main__visual .text-balloon__tail {
+  margin-top: -3px;
+}
+
