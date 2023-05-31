@@ -15,12 +15,16 @@ function Board() {
   const handleOpenModal = () => {
     setIsOpen(!isOpen);
   }
-  console.log(records);
+  const onRemove = (id) => {
+    setRecords((records) => records.filter((e) => e.id !== id));
+  }
+
   return (
     <BoardContainer>
       <AddBtn onClick={handleOpenModal}>추가하기</AddBtn>
       <RunningList 
-      records={records} />
+      records={records}
+      onRemove={onRemove}/>
       {isOpen && <AddToggle onInsert={onInsert} handleOpenModal={handleOpenModal}/>}
 
     </BoardContainer>
