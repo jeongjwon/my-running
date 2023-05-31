@@ -1,4 +1,4 @@
-.container {
+/* .container {
   background-color: rgba(0, 248, 125, 0.4);
   height: 100vh;
   width: 100vw;
@@ -19,17 +19,17 @@ header {
   background-color: aliceblue;
   border: 0.3rem solid #2e2e2e;
   border-radius: 2rem 2rem 0 0;
-  z-index: 1;
+  z-index: 1; */
   /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out; */
   /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
-  -o-transition: all 0.3s ease-out;
-}
+  -o-transition: all 0.3s ease-out; */
+/* } */
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   header {
     top: 6rem;
     width: calc(100% - 12rem);
@@ -43,21 +43,21 @@ header {
     width: calc(100% - 8rem);
     max-width: 144rem;
   }
-}
+} */
 
-.header__deco {
+/* .header__deco {
   position: absolute;
   top: 1.3rem;
   left: 1.5rem;
-  display: flex;
+  display: flex; */
   /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
-}
+} */
 
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .header__deco {
     top: 1.8rem;
     left: 2rem;
@@ -89,9 +89,9 @@ header {
   color: #2e2e2e;
   font-size: 1.4rem;
   font-weight: 700;
-  text-align: center;
+  text-align: center; */
   /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
@@ -115,16 +115,16 @@ header {
   border: 0.3rem solid #2e2e2e;
   border-radius: 2rem;
   overflow-y: scroll;
-  box-sizing: border-box;
+  box-sizing: border-box; */
   /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out; */
   /* 사용법 : @include mq(화면 너비, min/max(선택), width/height(선택)) */
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out;
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
-  scrollbar-width: none;
-}
+  scrollbar-width: none; */
+/* } */
 @media only screen and (min-width: 768px) {
   .main {
     width: calc(100% - 12rem);
