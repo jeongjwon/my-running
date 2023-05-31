@@ -1,16 +1,32 @@
 import styled from "styled-components";
-export const ItemWrapper = styled.li``;
+export const ItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  :first-child{
+    margin-bottom: 0.3rem;
+
+  }
+  
+  
+  > .memo {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+  }
+  
+
+
+`;
 export const ItemContainer = styled.li`
   border-radius: 1rem;
   background-color: white;
-  padding: 1rem;
+  padding: 1rem 0.8rem;
   margin: 1rem 0;
-  > .title_date{
-    font-weight: 500;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  > .memo {
+  
+  /* > .memo {
     display: flex;
     justify-content: space-between;
     > div {
@@ -18,5 +34,10 @@ export const ItemContainer = styled.li`
       flex-direction: column;
       align-items: center;
     }
-  }
+  } */
+`;
+export const  BtnZone = styled.button`
+  border: none;
+  background: transparent;
+  margin-left: 0.3rem
 `;
