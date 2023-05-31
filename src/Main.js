@@ -1,25 +1,25 @@
-
 import Board from "./Board";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import Calendar from "./Calendar";
 import Summary from "./Summary";
-
+import useLocalStorage from "./hooks/useLocalStorage";
+import {MainContainer, MainItem} from "./Main.styled";
 const Main = () => {
-    const [value, onChange] = useState(new Date());
-    return(
-        <main className="main">
-            <div className="main__visual">
-                <Summary />
-                <Calendar />
+  const [runnings, setRunnings] = useLocalStorage("records", []);
 
-            </div>
-            {/* <div className="board"> 
-                <Board />
-            </div> */}
+  return (
+    <MainContainer>
 
-        </main>
+      <MainItem>
+        <Summary />
+        <Calendar />
+      </MainItem>
 
-    )
-}
+      <MainItem>
+        <Board />
+      </MainItem>
+    </MainContainer>
+  );
+};
 
 export default Main;
