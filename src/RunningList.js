@@ -1,7 +1,7 @@
 import { Item } from "./Item";
 import { ListContainer } from "./RunningList.styled";
 
-const RunningList = ({records, onRemove}) => {
+const RunningList = ({records, onRemove, onEdit}) => {
   return (
   <ListContainer>
     {records.sort((a,b) =>  new Date(b.date)- new Date(a.date))
@@ -9,7 +9,8 @@ const RunningList = ({records, onRemove}) => {
       <Item 
         key={index} 
         record={record}
-        onRemove={onRemove}/>
+        onRemove={onRemove}
+        onEdit={onEdit}/>
     ))}
   </ListContainer>
   );
