@@ -10,7 +10,7 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
   return (
     <CalendarHeader>
       <button onClick={prevMonth}>
-        <FaChevronLeft size={25}/>
+        <FaChevronLeft/>
       </button>
 
       <div className="title col col-center">
@@ -21,7 +21,7 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
       </div>
       <button onClick={nextMonth}>
         {/* <Icon icon="bi:arrow-right-circle-fill" onClick={nextMonth}/> */}
-        <FaChevronRight size={25}/>
+        <FaChevronRight/>
       </button>
     </CalendarHeader>
   );
@@ -41,7 +41,14 @@ const RenderDays = () => {
   return <CalendarDays>{days}</CalendarDays>;
 };
 
-const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
+const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
+
+  
+
+const recordDay = records.map((record) => 
+     Number(record.date.split('-')[1]).toString() === format(currentMonth,'M') 
+    ? Number(record.date.split('-')[2]) : 0);
+
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
   const startDate = startOfWeek(monthStart);
@@ -60,15 +67,18 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
         <div
           className={`col cell ${
             !isSameMonth(day, monthStart)
-              ? "disabled"
-              : isSameDay(day, selectedDate)
+              ? "disabled" 
+            //   : isSameDay(day, selectedDate)
+            //   : isSameDay(day, ...recordDay)
+            //   :  recordDay.foreach((e) => e === day)
+            : recordDay.includes(Number(formattedDate))
               ? "selected"
               : format(currentMonth, "M") !== format(day, "M")
               ? "not-valid"
               : "valid"
           }`}
           key={day}
-          onClick={() => onDateClick(parse(cloneDay))}
+        //   onClick={() => onDateClick(parse(cloneDay))}
         >
           <span
             className={
@@ -93,7 +103,8 @@ const RenderCells = ({ currentMonth, selectedDate, onDateClick }) => {
   return <CalendarBody>{rows}</CalendarBody>;
 };
 
-const Calendar = () => {
+const Calendar = ({records}) => {
+    
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const prevMonth = () => {
@@ -115,6 +126,7 @@ const Calendar = () => {
 
       <RenderDays />
       <RenderCells
+        records={records}
         currentMonth={currentMonth}
         selectedDate={selectedDate}
         onDateClick={onDateClick}

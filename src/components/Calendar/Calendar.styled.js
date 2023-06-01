@@ -4,13 +4,14 @@ export const CalendarHeader = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: baseline;
-
+  
   > button {
     border: none;
     background: transparent;
+
     > svg {
       color: gray;
-      
+
       &:hover {
         cursor: pointer;
         transition: 0.2s ease-in-out;
