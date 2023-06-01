@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import useInput from "./hooks/useInput";
+import useInput from "../../hooks/useInput";
 import {
   AddBackground,
   AddForm,
@@ -7,7 +7,7 @@ import {
   SubmitBtn,
   CloseBtn,
   BtnZone,
-} from "./AddToggle.styled";
+} from "./AddForm.styled";
 
 const AddToggle = ({ onInsert, handleModal }) => {
   const [date, dateBind] = useInput("");

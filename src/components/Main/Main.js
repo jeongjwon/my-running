@@ -1,9 +1,10 @@
-import Board from "./Board";
+import Board from "../Board/Board";
 import React, { useState } from "react";
-import Calendar from "./Calendar";
-import Summary from "./Summary";
-import useLocalStorage from "./hooks/useLocalStorage";
+import Calendar from "../Calendar/Calendar";
+import Summary from "../../Summary";
+import useLocalStorage from "../../hooks/useLocalStorage";
 import {MainContainer, MainItem} from "./Main.styled";
+
 const Main = () => {
   const [runnings, setRunnings] = useLocalStorage("records", []);
 

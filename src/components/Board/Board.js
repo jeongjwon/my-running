@@ -1,9 +1,9 @@
-import AddToggle from "./AddToggle";
-import RunningList from "./RunningList";
+import AddForm from "../AddForm/AddForm";
+import RunningList from "../RunningList/RunningList";
 import { useState } from "react";
 import { BoardContainer, AddBtn } from "./Board.styled";
-import useLocalStorage from "./hooks/useLocalStorage";
-import { EditForm } from "./EditForm";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import EditForm  from "../EditForm/EditForm";
 
 function Board() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,7 @@ function Board() {
     <BoardContainer>
       <AddBtn onClick={handleModal}>추가하기</AddBtn>
       <RunningList records={records} onRemove={onRemove} onEdit={onEdit} />
-      {isOpen && <AddToggle onInsert={onInsert} handleModal={handleModal} />}
+      {isOpen && <AddForm onInsert={onInsert} handleModal={handleModal} />}
       {isEditing && <EditForm editedTask={editedTask} onUpdate={onUpdate} />}
     </BoardContainer>
   );

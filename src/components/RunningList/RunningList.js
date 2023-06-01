@@ -1,4 +1,4 @@
-import { Item } from "./Item";
+import { Item } from "../Item/Item";
 import { ListContainer } from "./RunningList.styled";
 
 const RunningList = ({records, onRemove, onEdit}) => {

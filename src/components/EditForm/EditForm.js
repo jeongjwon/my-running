@@ -1,7 +1,9 @@
-import {AddBackground, AddForm , FormWrapper, BtnZone, CloseBtn,SubmitBtn} from "./AddToggle.styled";
+import {AddBackground, AddForm , FormWrapper, BtnZone, CloseBtn,SubmitBtn} from "../AddForm/AddForm.styled";
 import { useCallback } from "react";
-import useInput from "./hooks/useInput";
-export const EditForm = ({editedTask, onUpdate, handleModal}) => {
+import useInput from "../../hooks/useInput";
+
+
+const EditForm = ({editedTask, onUpdate, handleModal}) => {
 
 const {id, date, distance, pace, time} = editedTask;
 
@@ -68,3 +70,5 @@ const [updatedPerSec, perSecBind] = useInput(pace.split(":")[1]);
     </AddBackground>
     )
 }
+
+export default EditForm;
