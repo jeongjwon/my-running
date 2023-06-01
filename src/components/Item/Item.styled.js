@@ -39,5 +39,5 @@ export const ItemContainer = styled.li`
 export const  BtnZone = styled.button`
   border: none;
   background: transparent;
-  margin-left: 0.3rem
+  margin-left: 0.5rem
 `;
