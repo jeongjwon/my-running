@@ -9,7 +9,7 @@ import {
   BtnZone,
 } from "./AddToggle.styled";
 
-const AddToggle = ({ onInsert, handleOpenModal }) => {
+const AddToggle = ({ onInsert, handleModal }) => {
   const [date, dateBind] = useInput("");
   const [distance, distanceBind] = useInput("0.00");
   const [hour, hourBind] = useInput("0");
@@ -25,12 +25,12 @@ const AddToggle = ({ onInsert, handleOpenModal }) => {
         id: Date.now(),
         date,
         distance,
-        time: `${hour} : ${minute} : ${second}`,
-        pace: `${perMin} : ${perSec},`,
+        time: `${hour}:${minute}:${second}`,
+        pace: `${perMin}:${perSec}`,
       };
       console.log(newRecord);
       onInsert(newRecord);
-      handleOpenModal();
+      handleModal();
     },
     [onInsert, date, distance, hour, minute, second, perMin, perSec]
   );
@@ -66,7 +66,7 @@ const AddToggle = ({ onInsert, handleOpenModal }) => {
           </div>
         </FormWrapper>
         <BtnZone>
-          <CloseBtn onClick={handleOpenModal}>닫기</CloseBtn>
+          <CloseBtn onClick={handleModal}>닫기</CloseBtn>
           <SubmitBtn type="submit">제출하기</SubmitBtn>
         </BtnZone>
       </AddForm>

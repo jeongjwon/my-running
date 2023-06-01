@@ -1,16 +1,17 @@
 import { ItemContainer, ItemWrapper , BtnZone} from "./Item.styled";
 import { HiOutlineTrash, HiOutlinePencilAlt } from "react-icons/hi";
 
-export const Item = ({ record, onRemove }) => {
-  console.log(record);
+export const Item = ({ record, onRemove, onEdit }) => {
   const { date, distance, time, pace, id } = record;
+
+
   return (
    
     <ItemContainer>
       <ItemWrapper>
       <div className="title_date">{date}</div>
       <div className="btn_zone">
-       <BtnZone className="edit" ><HiOutlinePencilAlt size={20}/></BtnZone>
+       <BtnZone className="edit" onClick={() => onEdit(record)}><HiOutlinePencilAlt size={20}/></BtnZone>
        <BtnZone className="remove" onClick={() => onRemove(id)}><HiOutlineTrash size={20} /></BtnZone>
       
       </div>
