@@ -6,18 +6,18 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import {MainContainer, MainItem} from "./Main.styled";
 
 const Main = () => {
-  const [runnings, setRunnings] = useLocalStorage("records", []);
+  const [records, setRecords] = useLocalStorage("records", []);
 
   return (
     <MainContainer>
 
       <MainItem>
         <Summary />
-        <Calendar />
+        <Calendar records={records}/>
       </MainItem>
 
       <MainItem>
-        <Board />
+        <Board records={records} setRecords={setRecords}/>
       </MainItem>
     </MainContainer>
   );

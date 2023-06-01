@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { format } from "date-fns";
 import useInput from "../../hooks/useInput";
 import {
   AddBackground,
@@ -28,7 +29,6 @@ const AddToggle = ({ onInsert, handleModal }) => {
         time: `${hour}:${minute}:${second}`,
         pace: `${perMin}:${perSec}`,
       };
-      console.log(newRecord);
       onInsert(newRecord);
       handleModal();
     },

@@ -5,12 +5,11 @@ import { BoardContainer, AddBtn } from "./Board.styled";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import EditForm  from "../EditForm/EditForm";
 
-function Board() {
+function Board({records, setRecords}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [editedTask, setEditedTask] = useState("");
-  const [records, setRecords] = useLocalStorage("records", []);
-
+ 
   const onInsert = (record) => {
     setRecords((prevState) => [...prevState, record]);
   };
@@ -32,7 +31,7 @@ function Board() {
     setIsEditing(!isEditing);
     setEditedTask(record);
   };
-  console.log(records);
+
   return (
     <BoardContainer>
       <AddBtn onClick={handleModal}>추가하기</AddBtn>
