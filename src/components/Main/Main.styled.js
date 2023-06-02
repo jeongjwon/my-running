@@ -13,7 +13,7 @@ export const MainContainer = styled.main`
 export const MainItem = styled.div`
   padding: 1rem;
   :nth-child(1) {
-    flex-grow: 5;
+    flex-grow: 3;
   }
   :nth-child(2) {
     flex-grow: 1;
