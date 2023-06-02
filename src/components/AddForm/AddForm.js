@@ -26,8 +26,8 @@ const AddToggle = ({ onInsert, handleModal }) => {
         id: Date.now(),
         date,
         distance,
-        time: `${hour}:${minute}:${second}`,
-        pace: `${perMin}:${perSec}`,
+        time: `${hour}:${minute.length === 1 ? "0"+minute : minute}:${second.length === 1 ? "0"+second : second}`,
+        pace: `${perMin}:${perSec.length === 1 ? "0"+perSec : perSec}`,
       };
       onInsert(newRecord);
       handleModal();

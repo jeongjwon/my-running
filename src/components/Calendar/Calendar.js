@@ -69,8 +69,6 @@ const recordDay = records.map((record) =>
             !isSameMonth(day, monthStart)
               ? "disabled" 
             //   : isSameDay(day, selectedDate)
-            //   : isSameDay(day, ...recordDay)
-            //   :  recordDay.foreach((e) => e === day)
             : recordDay.includes(Number(formattedDate))
               ? "selected"
               : format(currentMonth, "M") !== format(day, "M")
