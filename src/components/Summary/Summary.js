@@ -1,25 +1,7 @@
-import styled from "styled-components";
+import {SummaryDiv} from "./Summary.styled";
 
-export const SummaryDiv = styled.div`
-  background: lightgray;
-  padding: 0.5rem 1rem;
-  /* border: 0.1rem solid #2e2e2e; */
-  margin: 1rem 1rem 0 1rem;
-  border-radius: 0.8rem;
-  display: flex;
-  justify-content: space-evenly;
- > .memo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    > :nth-child(2){
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: darkgray;
-    }
- }
-`;
 const Summary = ({ monthlyRecord }) => {
+
   let dis = 0,
     hour = 0,
     min = 0,
@@ -66,11 +48,11 @@ const Summary = ({ monthlyRecord }) => {
           <div>러닝</div>
         </div>
         <div className="memo">
-          <div>{`${totalHour}:${totalMin}:${totalSec}`}</div>
+          <div>{`${totalPaceMin}'${totalPaceSec}"`}</div>
           <div>평균 페이스</div>
         </div>
         <div className="memo">
-          <div>{`${totalPaceMin}'${totalPaceSec}"`}</div>
+          <div>{`${totalHour}:${totalMin}:${totalSec}`}</div>
           <div>시간</div>
         </div>
        
