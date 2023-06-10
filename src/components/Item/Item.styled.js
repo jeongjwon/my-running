@@ -28,6 +28,7 @@ export const ItemWrapper = styled.div`
 
 `;
 export const ItemContainer = styled.li`
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
   border-radius: 1rem;
   background-color: white;
   padding: 1rem 0.8rem;

@@ -62,6 +62,7 @@ export const CalendarBody = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0.2rem;
     > .col {
       height: 3rem;
       width: 3rem;
@@ -79,7 +80,7 @@ export const CalendarBody = styled.div`
     }
     > .col.cell.selected {
       border-radius: 50%;
-      background-color: #f3c5b6;
+      background-color: #71a686;//#12cd73;//#f3c5b6;
       font-weight: 600;
     }
   }
@@ -87,5 +88,5 @@ export const CalendarBody = styled.div`
 export const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2rem 3rem;
+  padding: 2rem 5rem;
 `;

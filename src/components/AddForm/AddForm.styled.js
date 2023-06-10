@@ -44,12 +44,15 @@ export const AddForm = styled.form`
   }
 `;
 export const FormWrapper = styled.div`
+padding: 0.5rem; 
   > .item{
     display: flex;
     justify-content: space-between;
+    margin: 0.5rem 0;
     >span{
       > input[type="number"] {
       width: 3rem;
+      text-align: center;
     }
     }
   }
