@@ -2,15 +2,20 @@ import React, { useState } from "react";
 import { format, subMonths, addMonths } from "date-fns";
 import { startOfMonth, startOfWeek, endOfMonth, endOfWeek } from "date-fns";
 import { isSameMonth, isSameDay, addDays, parse } from "date-fns";
-import {FaChevronRight,FaChevronLeft } from "react-icons/fa";
-
-import {CalendarHeader,CalendarDays, CalendarBody , CalendarContainer} from "./Calendar.styled"
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import Summary from "../../Summary";
+import {
+  CalendarHeader,
+  CalendarDays,
+  CalendarBody,
+  CalendarContainer,
+} from "./Calendar.styled";
 
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
   return (
     <CalendarHeader>
       <button onClick={prevMonth}>
-        <FaChevronLeft/>
+        <FaChevronLeft />
       </button>
 
       <div className="title col col-center">
@@ -21,7 +26,7 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
       </div>
       <button onClick={nextMonth}>
         {/* <Icon icon="bi:arrow-right-circle-fill" onClick={nextMonth}/> */}
-        <FaChevronRight/>
+        <FaChevronRight />
       </button>
     </CalendarHeader>
   );
@@ -42,12 +47,11 @@ const RenderDays = () => {
 };
 
 const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
-
-  
-
-const recordDay = records.map((record) => 
-     Number(record.date.split('-')[1]).toString() === format(currentMonth,'M') 
-    ? Number(record.date.split('-')[2]) : 0);
+  const recordDay = records.map((record) =>
+    Number(record.date.split("-")[1]).toString() === format(currentMonth, "M")
+      ? Number(record.date.split("-")[2])
+      : 0
+  );
 
   const monthStart = startOfMonth(currentMonth);
   const monthEnd = endOfMonth(monthStart);
@@ -58,7 +62,7 @@ const recordDay = records.map((record) =>
   let days = [];
   let day = startDate;
   let formattedDate = "";
-
+  console.log(recordDay);
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
       formattedDate = format(day, "d");
@@ -67,16 +71,16 @@ const recordDay = records.map((record) =>
         <div
           className={`col cell ${
             !isSameMonth(day, monthStart)
-              ? "disabled" 
-            //   : isSameDay(day, selectedDate)
-            : recordDay.includes(Number(formattedDate))
+              ? "disabled"
+              : //   : isSameDay(day, selectedDate)
+              recordDay.includes(Number(formattedDate))
               ? "selected"
               : format(currentMonth, "M") !== format(day, "M")
               ? "not-valid"
               : "valid"
           }`}
           key={day}
-        //   onClick={() => onDateClick(parse(cloneDay))}
+          //   onClick={() => onDateClick(parse(cloneDay))}
         >
           <span
             className={
@@ -101,8 +105,7 @@ const recordDay = records.map((record) =>
   return <CalendarBody>{rows}</CalendarBody>;
 };
 
-const Calendar = ({records}) => {
-    
+const Calendar = ({ records }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const prevMonth = () => {
@@ -114,6 +117,12 @@ const Calendar = ({records}) => {
   const onDateClick = (day) => {
     setSelectedDate(day);
   };
+
+  const monthlyRecord = records.filter((record) =>
+   Number(record.date.split("-")[1]).toString() === format(currentMonth, "M")
+  ? Number(record.date.split("-")[2])
+  : 0 );
+
   return (
     <CalendarContainer>
       <RenderHeader
@@ -121,6 +130,7 @@ const Calendar = ({records}) => {
         prevMonth={prevMonth}
         nextMonth={nextMonth}
       />
+      <Summary monthlyRecord={monthlyRecord} />
 
       <RenderDays />
       <RenderCells
