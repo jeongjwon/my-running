@@ -87,5 +87,5 @@ export const CalendarBody = styled.div`
 export const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2rem 5rem;
+  padding: 2rem 3rem;
 `;
