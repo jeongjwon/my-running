@@ -3,7 +3,7 @@ import { format, subMonths, addMonths } from "date-fns";
 import { startOfMonth, startOfWeek, endOfMonth, endOfWeek } from "date-fns";
 import { isSameMonth, isSameDay, addDays, parse } from "date-fns";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import Summary from "../../Summary";
+import Summary from "../Summary/Summary";
 import {
   CalendarHeader,
   CalendarDays,
