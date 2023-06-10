@@ -26,8 +26,10 @@ const AddToggle = ({ onInsert, handleModal }) => {
         id: Date.now(),
         date,
         distance,
-        time: `${hour}:${minute.length === 1 ? "0"+minute : minute}:${second.length === 1 ? "0"+second : second}`,
-        pace: `${perMin}:${perSec.length === 1 ? "0"+perSec : perSec}`,
+        time: `${hour}:${minute.length === 1 ? "0" + minute : minute}:${
+          second.length === 1 ? "0" + second : second
+        }`,
+        pace: `${perMin}:${perSec.length === 1 ? "0" + perSec : perSec}`,
       };
       onInsert(newRecord);
       handleModal();
@@ -41,28 +43,43 @@ const AddToggle = ({ onInsert, handleModal }) => {
         <FormWrapper>
           <div className="item">
             <span>날짜</span>
-            <input type="date" {...dateBind} required></input>
+            <span>
+              <input type="date" {...dateBind} required></input>
+            </span>
           </div>
           <div className="item">
             <span>거리</span>
-            <input
-              type="number"
-              {...distanceBind}
-              min={0}
-              step="0.01"
-              required
-            />
+            <span>
+              <input
+                type="number"
+                {...distanceBind}
+                min={0}
+                step="0.01"
+                required
+              />
+            </span>
           </div>
           <div className="item">
             <span>시간</span>
-            <input type="number" {...hourBind} min={0} />:
-            <input type="number" {...minuteBind} min={0} max={59} required /> :
-            <input type="number" {...secondBind} min={0} max={59} required />
+            <span>
+              <input type="number" {...hourBind} min={0} />:
+              <input
+                type="number"
+                {...minuteBind}
+                min={0}
+                max={59}
+                required
+              />{" "}
+              :
+              <input type="number" {...secondBind} min={0} max={59} required />
+            </span>
           </div>
           <div className="item">
             <span>평균 페이스</span>
-            <input type="number" {...perMinBind} min={0} required /> :
-            <input type="number" {...perSecBind} min={0} max={59} required />
+            <span>
+              <input type="number" {...perMinBind} min={0} required /> :
+              <input type="number" {...perSecBind} min={0} max={59} required />
+            </span>
           </div>
         </FormWrapper>
         <BtnZone>

@@ -18,21 +18,23 @@ export const AddForm = styled.form`
   border-radius: 1rem;
   background-color: white;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   flex-direction: column;
   padding: 1rem;
 
   > .item {
-    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
     padding: 0.3rem 0;
+
     > span {
       margin-right: 0.5rem;
     }
     > input {
     }
-    > input[type="number"] {
+    /* > input[type="number"] {
       width: 3rem;
-    }
+    } */
     /* > :first-child {
     
     }
@@ -42,6 +44,16 @@ export const AddForm = styled.form`
   }
 `;
 export const FormWrapper = styled.div`
+  > .item{
+    display: flex;
+    justify-content: space-between;
+    >span{
+      > input[type="number"] {
+      width: 3rem;
+    }
+    }
+  }
+ 
 `
 export const SubmitBtn = styled.button`
   display: flex;
