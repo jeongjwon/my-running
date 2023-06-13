@@ -4,7 +4,8 @@ import { useState } from "react";
 import { BoardContainer, AddBtn } from "./Board.styled";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import EditForm  from "../EditForm/EditForm";
-
+import {useDispatch, useSelector} from "react-redux";
+import { openAddModalAction } from "../../redux/actions";
 function Board({records, setRecords}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -31,12 +32,22 @@ function Board({records, setRecords}) {
     setIsEditing(!isEditing);
     setEditedTask(record);
   };
+  const dispatch = useDispatch();
+
+  const openAddModalHandler = () => {
+    dispatch(openAddModalAction({isAddOn: true}));
+  }
+  const state = useSelector(state => state.addModalReducer);
+
+  
 
   return (
     <BoardContainer>
-      <AddBtn onClick={handleModal}>추가하기</AddBtn>
+      {/* <AddBtn onClick={handleModal}>추가하기</AddBtn> */}
+      <AddBtn onClick={openAddModalHandler}>추가하기</AddBtn>
       <RunningList records={records} onRemove={onRemove} onEdit={onEdit} />
-      {isOpen && <AddForm onInsert={onInsert} handleModal={handleModal} />}
+      {/* {isOpen && <AddForm onInsert={onInsert} handleModal={handleModal} />} */}
+      {state.isAddOn &&  <AddForm onInsert={onInsert} handleModal={handleModal} />}
       {isEditing && <EditForm editedTask={editedTask} onUpdate={onUpdate} />}
     </BoardContainer>
   );
