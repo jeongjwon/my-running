@@ -8,6 +8,8 @@ import {
 } from "../AddForm/AddForm.styled";
 import { useCallback } from "react";
 import useInput from "../../hooks/useInput";
+import { useDispatch, useSelector } from "react-redux";
+import { closeEditModalAction } from "../../redux/actions";
 
 const EditForm = ({ editedTask, onUpdate, handleModal }) => {
   const { id, date, distance, pace, time } = editedTask;
@@ -32,11 +34,19 @@ const EditForm = ({ editedTask, onUpdate, handleModal }) => {
         time: `${updatedHour}:${updatedMinute}:${updatedSecond}`,
         pace: `${updatedPerMin}:${updatedPerSec}`,
       };
-      console.log(newRecord);
+      closeEditModalHanlder();
       onUpdate({ ...editedTask, ...newRecord });
     }
     // [onInsert, date, distance, hour, minute, second, perMin, perSec]
   );
+
+  const state = useSelector(state => state.editModalReducer);
+  const dispatch = useDispatch();
+  
+    const closeEditModalHanlder = () => {
+      dispatch(closeEditModalAction());
+    }
+    
   return (
     <AddBackground>
       <AddForm onSubmit={handleSumbit}>
@@ -83,7 +93,8 @@ const EditForm = ({ editedTask, onUpdate, handleModal }) => {
           </div>
         </FormWrapper>
         <BtnZone>
-          <CloseBtn onClick={handleModal}>취소</CloseBtn>
+          {/* <CloseBtn onClick={handleModal}>취소</CloseBtn> */}
+          <CloseBtn onClick={closeEditModalHanlder}>취소</CloseBtn>
           <SubmitBtn type="submit">제출하기</SubmitBtn>
         </BtnZone>
       </AddForm>

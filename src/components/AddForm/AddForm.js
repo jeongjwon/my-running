@@ -10,7 +10,7 @@ import {
   BtnZone,
 } from "./AddForm.styled";
 import { useSelector, useDispatch } from "react-redux";
-import { closeADDModalAction } from "../../redux/actions";
+import { closeAddModalAction } from "../../redux/actions";
 
 const AddToggle = ({ onInsert, handleModal }) => {
   const [date, dateBind] = useInput("");
@@ -34,7 +34,8 @@ const AddToggle = ({ onInsert, handleModal }) => {
         pace: `${perMin}:${perSec.length === 1 ? "0" + perSec : perSec}`,
       };
       onInsert(newRecord);
-      handleModal();
+      // handleModal();
+      closeAddModalHanlder();
     },
     [onInsert, date, distance, hour, minute, second, perMin, perSec]
   );
@@ -43,7 +44,7 @@ const AddToggle = ({ onInsert, handleModal }) => {
   const dispatch = useDispatch();
 
   const closeAddModalHanlder = () => {
-    dispatch(closeADDModalAction());
+    dispatch(closeAddModalAction());
   }
 
   return (

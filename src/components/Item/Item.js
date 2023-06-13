@@ -1,8 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
 import { ItemContainer, ItemWrapper , BtnZone} from "./Item.styled";
 import { HiOutlineTrash, HiOutlinePencilAlt } from "react-icons/hi";
+import { openEditModalAction } from "../../redux/actions";
 
 export const Item = ({ record, onRemove, onEdit }) => {
   const { date, distance, time, pace, id } = record;
+
+  const dispatch = useDispatch();
+
+  const openEditModalHanlder = () => {
+    dispatch(openEditModalAction({
+      isEditOn: true,
+      record: record
+    }));
+  }
 
 
   return (
@@ -11,7 +22,8 @@ export const Item = ({ record, onRemove, onEdit }) => {
       <ItemWrapper>
       <div className="title_date">{date}</div>
       <div className="btn_zone">
-       <BtnZone className="edit" onClick={() => onEdit(record)}><HiOutlinePencilAlt size={20}/></BtnZone>
+       {/* <BtnZone className="edit" onClick={() => onEdit(record)}><HiOutlinePencilAlt size={20}/></BtnZone> */}
+       <BtnZone className="edit" onClick={openEditModalHanlder}><HiOutlinePencilAlt size={20}/></BtnZone>
        <BtnZone className="remove" onClick={() => onRemove(id)}><HiOutlineTrash size={20} /></BtnZone>
       
       </div>
