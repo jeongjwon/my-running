@@ -9,6 +9,8 @@ import {
   CloseBtn,
   BtnZone,
 } from "./AddForm.styled";
+import { useSelector, useDispatch } from "react-redux";
+import { closeADDModalAction } from "../../redux/actions";
 
 const AddToggle = ({ onInsert, handleModal }) => {
   const [date, dateBind] = useInput("");
@@ -36,6 +38,13 @@ const AddToggle = ({ onInsert, handleModal }) => {
     },
     [onInsert, date, distance, hour, minute, second, perMin, perSec]
   );
+
+  const state = useSelector(state => state.addModalReducer);
+  const dispatch = useDispatch();
+
+  const closeAddModalHanlder = () => {
+    dispatch(closeADDModalAction());
+  }
 
   return (
     <AddBackground>
@@ -83,7 +92,8 @@ const AddToggle = ({ onInsert, handleModal }) => {
           </div>
         </FormWrapper>
         <BtnZone>
-          <CloseBtn onClick={handleModal}>닫기</CloseBtn>
+          {/* <CloseBtn onClick={handleModal}>닫기</CloseBtn> */}
+          <CloseBtn onClick={closeAddModalHanlder}>닫기</CloseBtn> 
           <SubmitBtn type="submit">제출하기</SubmitBtn>
         </BtnZone>
       </AddForm>

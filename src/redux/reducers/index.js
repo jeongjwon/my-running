@@ -29,7 +29,9 @@ export const addModalReducer = (
         isAddOn: true,
       };
     case CLOSE_ADD_MODAL:
-      return {};
+      return {
+        isAddOn: false,
+      };
     case SUBMIT_ADD_MODAL:
       return {};
     default:
