@@ -62,25 +62,27 @@ export const SubmitBtn = styled.button`
   display: flex;
   justify-content: center;
   margin-top: 0.5rem;
-  background-color: #73a486;
+  background-color: #375142; //#73a486;
   padding: 0.5rem 1rem;
   font-weight: 500;
   text-align: center;
   border-radius: 0.8rem;
   width: 5rem;
   border: none;
+  color: white;
 `;
 export const CloseBtn = styled.button`
    display: flex;
   justify-content: center;
   margin-top: 0.5rem;
-  background-color: #73a486;
+  background-color: #375142;//#73a486;
   padding: 0.5rem 1rem;
   font-weight: 500;
   text-align: center;
   border-radius: 0.8rem;
   width: 5rem;
   border: none;
+  color: white;
 `
 
 export const BtnZone = styled.div`
