@@ -14,7 +14,7 @@ const Summary = ({ monthlyRecord }) => {
   
   if(monthlyRecord.length > 0){
     monthlyRecord.forEach((e) => {
-        console.log(e.pace);
+
         dis += Number(e.distance);
         hour += Number(e.time.split(":")[0]);
         min += Number(e.time.split(":")[1]);

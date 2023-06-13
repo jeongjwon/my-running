@@ -62,7 +62,7 @@ const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
   let days = [];
   let day = startDate;
   let formattedDate = "";
-  console.log(recordDay);
+
   while (day <= endDate) {
     for (let i = 0; i < 7; i++) {
       formattedDate = format(day, "d");
