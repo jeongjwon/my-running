@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+## Run Record
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+꽤 오랜 취미생활로 러닝을 즐겨하고 있던 중, 스마트폰과 스마트워치의 '나이키 런 클럽' 이라는 어플리케이션의 연동으로 폰에는 자동적으로 달리기를 시작하고 종료함에 따라 저장이 된다. 스마트폰의 기록처럼 웹에도 기록을 해보고 싶다는 생각으로 이 프로젝트를 시작하게 되었다.
 
-## Available Scripts
+![](https://velog.velcdn.com/images/jeongjwon/post/7278a15f-875b-42de-aef6-0fbb22822008/image.gif)
 
-In the project directory, you can run:
 
-### `npm start`
+## 주요 기능
+#### 1. Running Record CRUD 기능
+- 러닝 일지 추가 : 오른쪽 상단의 '추가하기' 버튼을 통해 **입력 폼 모달창**을 통해 기본적인 정보(달린 날짜, 거리, 시간, 페이스)를 저장하고 '제출하기' 버튼을 클릭한다.
+- 러닝 일지 삭제 : 생성된 기록 일지의 '휴지통' 버튼을 클릭하면 그 기록은 삭제된다.
+- 러닝 일지 편집 : 생성된 기록 일지의 '연필' 버튼을 클릭하면 **수정 폼 모달창**을 통해 날짜 외의 정보를 편집할 수 있다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### 2. 캘린더 
+- 월별 캘린더 구현 : **오늘 날짜** 에 해당하는 월별을 렌더링하고, 좌우 버튼을 통해 달을 이동시킬 수 있다.
+- 월별 러닝 기록 요약 : 기록된 일지의 월별마다의 달린 정보(거리, 러닝 수, 평균 페이스, 시간)를 요약하여 한 눈에 보여준다.
+- 월별 러닝 기록 동그라미 표시 : 월별 캘린더에서 달렸던 날짜을 보기 좋게 동그랗게 색칠한 느낌으로 렌더링한다.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+</br>
+</br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 어려웠던 점
+#### 1. 캘린더 
+- 캘린더의 현재 달, 요일, 날짜 렌더링 
+- 러닝 일지가 기록된 날짜에 동그라미 표시 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 2. 러닝 기록 계산 
+- 웹 구현에 있어서라기 보다는 계산 문제였지만 **월별 기록**이다 보니, 필터기능과 입력폼에서 input text 값으로 받아온 값을 숫자형으로 계산을 해야했기 때문에 조금 복잡했다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+</br></br>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 더 구현해보고 싶은 점
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+리덕스 사용
+달마다 가장 페이스가 좋은 기록 표시 기능
+달 이동마다 오른쪽 기록 일지에서 해당 월 자동 스크롤 기능
