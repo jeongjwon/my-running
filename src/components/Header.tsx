@@ -1,6 +1,19 @@
 import styled from "styled-components";
 
-export const HeaderContainer = styled.header`
+function Header() {
+  return (
+    <HeaderContainer>
+      <HeaderWrapper>
+        {/* <span className="header__deco__close-btn"></span>
+        <span className="header__deco__close-btn"></span>
+        <span className="header__deco__close-btn"></span> */}
+      </HeaderWrapper>
+      <HeaderTitle>My Running</HeaderTitle>
+    </HeaderContainer>
+  );
+}
+
+const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +24,7 @@ export const HeaderContainer = styled.header`
   z-index: 1;
 `;
 
-export const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div`
   display: flex;
   justify-content: center;
 
@@ -33,10 +46,11 @@ export const HeaderWrapper = styled.div`
     }
   }
 `;
-
-export const HeaderTitle = styled.h1`
+const HeaderTitle = styled.h1`
   color: #2e2e2e;
   font-size: 1.4rem;
   font-weight: 700;
   text-align: center;
 `;
+
+export default Header;

@@ -5,11 +5,11 @@ import {
   BtnZone,
   CloseBtn,
   SubmitBtn,
-} from "../AddForm/AddForm.styled";
+} from "./AddForm";
 import { useCallback } from "react";
-import useInput from "../../hooks/useInput";
-import { useDispatch, useSelector } from "react-redux";
-import { closeEditModalAction } from "../../redux/actions";
+import useInput from "../hooks/useInput";
+// import { useDispatch, useSelector } from "react-redux";
+// import { closeEditModalAction } from "../../redux/actions";
 
 const EditForm = ({ editedTask, onUpdate, handleModal }) => {
   const { id, date, distance, pace, time } = editedTask;
@@ -24,29 +24,29 @@ const EditForm = ({ editedTask, onUpdate, handleModal }) => {
   const [updatedPerMin, perMinBind] = useInput(pace.split(":")[0]);
   const [updatedPerSec, perSecBind] = useInput(pace.split(":")[1]);
 
-  const handleSumbit = useCallback(
-    (e) => {
-      e.preventDefault();
-      const newRecord = {
-        id,
-        date,
-        distance: updatedDistance,
-        time: `${updatedHour}:${updatedMinute}:${updatedSecond}`,
-        pace: `${updatedPerMin}:${updatedPerSec}`,
-      };
-      closeEditModalHanlder();
-      onUpdate({ ...editedTask, ...newRecord });
-    }
-    // [onInsert, date, distance, hour, minute, second, perMin, perSec]
-  );
+  // const handleSumbit = useCallback(
+  //   (e) => {
+  //     e.preventDefault();
+  //     const newRecord = {
+  //       id,
+  //       date,
+  //       distance: updatedDistance,
+  //       time: `${updatedHour}:${updatedMinute}:${updatedSecond}`,
+  //       pace: `${updatedPerMin}:${updatedPerSec}`,
+  //     };
+  //     closeEditModalHanlder();
+  //     onUpdate({ ...editedTask, ...newRecord });
+  //   }
+  //   // [onInsert, date, distance, hour, minute, second, perMin, perSec]
+  // );
 
-  const state = useSelector(state => state.editModalReducer);
-  const dispatch = useDispatch();
-  
-    const closeEditModalHanlder = () => {
-      dispatch(closeEditModalAction());
-    }
-    
+  // const state = useSelector((state) => state.editModalReducer);
+  // const dispatch = useDispatch();
+
+  // const closeEditModalHanlder = () => {
+  //   dispatch(closeEditModalAction());
+  // };
+
   return (
     <AddBackground>
       <AddForm onSubmit={handleSumbit}>
@@ -93,8 +93,8 @@ const EditForm = ({ editedTask, onUpdate, handleModal }) => {
           </div>
         </FormWrapper>
         <BtnZone>
-          {/* <CloseBtn onClick={handleModal}>취소</CloseBtn> */}
-          <CloseBtn onClick={closeEditModalHanlder}>취소</CloseBtn>
+          <CloseBtn onClick={handleModal}>취소</CloseBtn>
+          {/* <CloseBtn onClick={closeEditModalHanlder}>취소</CloseBtn> */}
           <SubmitBtn type="submit">제출하기</SubmitBtn>
         </BtnZone>
       </AddForm>

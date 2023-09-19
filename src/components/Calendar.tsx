@@ -3,14 +3,8 @@ import { format, subMonths, addMonths } from "date-fns";
 import { startOfMonth, startOfWeek, endOfMonth, endOfWeek } from "date-fns";
 import { isSameMonth, isSameDay, addDays, parse } from "date-fns";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import Summary from "../Summary/Summary";
-import {
-  CalendarHeader,
-  CalendarDays,
-  CalendarBody,
-  CalendarContainer,
-} from "./Calendar.styled";
-
+import Summary from "./Summary";
+import styled from "styled-components";
 const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
   return (
     <CalendarHeader>
@@ -119,9 +113,10 @@ const Calendar = ({ records }) => {
   };
 
   const monthlyRecord = records.filter((record) =>
-   Number(record.date.split("-")[1]).toString() === format(currentMonth, "M")
-  ? Number(record.date.split("-")[2])
-  : 0 );
+    Number(record.date.split("-")[1]).toString() === format(currentMonth, "M")
+      ? Number(record.date.split("-")[2])
+      : 0
+  );
 
   return (
     <CalendarContainer>
@@ -142,4 +137,96 @@ const Calendar = ({ records }) => {
     </CalendarContainer>
   );
 };
+
+const CalendarHeader = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+
+  > button {
+    border: none;
+    background: transparent;
+
+    > svg {
+      color: gray;
+
+      &:hover {
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        transform: scale(1.15);
+        color: #686868;
+      }
+    }
+  }
+
+  > .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    > .text {
+      font-size: 0.8rem;
+      > .text.month {
+        margin-left: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  }
+`;
+const CalendarDays = styled.div`
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 2px;
+  color: #686868;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  > .col {
+    height: 3rem;
+    width: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+const CalendarBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  > .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.2rem;
+    > .col {
+      height: 3rem;
+      width: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      > .not-valid {
+        color: #c4c4c4;
+      }
+    }
+    > .col.cell.valid:hover {
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+    > .col.cell.selected {
+      border-radius: 50%;
+      background-color: #71a686; //#12cd73;//#f3c5b6;
+      font-weight: 600;
+    }
+  }
+`;
+const CalendarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 5rem;
+`;
+
 export default Calendar;
