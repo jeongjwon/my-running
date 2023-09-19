@@ -1,17 +1,25 @@
-import Item from "./Item";
+import React from "react";
+
 import styled from "styled-components";
-const RunningList = ({ records, onRemove, onEdit, openEditModalHanlder }) => {
-  console.log(records);
+import { Record } from "./Board";
+import Item from "./Item";
+
+type ListProps = {
+  records: Record[];
+  onRemove: (id: number) => void;
+  onEdit: (record: Record) => void;
+};
+
+const List: React.FC<ListProps> = ({ records, onRemove, onEdit }) => {
   return (
     <ListContainer>
       {records
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
         .map((record, index) => (
           <Item
             key={index}
             record={record}
             onRemove={onRemove}
-            // openEditModalHanlder={openEditModalHanlder}
             onEdit={onEdit}
           />
         ))}
@@ -22,9 +30,10 @@ const RunningList = ({ records, onRemove, onEdit, openEditModalHanlder }) => {
 const ListContainer = styled.ul`
   padding: 0;
   list-style: none;
-  min-height: 300x;
+  min-height: 300px;
   max-height: 500px;
   overflow-y: auto;
   margin-top: 0;
 `;
-export default RunningList;
+
+export default List;

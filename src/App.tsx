@@ -1,16 +1,8 @@
-// import "./App.css";
+import React from "react";
+import "./App.css";
 import styled from "styled-components";
-
-import Header from "./components/Header/Header";
+import Header from "./components/Header";
 import Main from "./components/Main";
-
-export const Container = styled.div`
-  background-color: rgba(0, 248, 125, 0.4);
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-  padding: 5rem 8rem;
-`;
 function App() {
   return (
     <Container>
@@ -19,5 +11,10 @@ function App() {
     </Container>
   );
 }
-
+export const Container = styled.div`
+  background-color: rgba(0, 248, 125, 0.4);
+  position: relative;
+  height: 100vh;
+  padding: 5rem 8rem;
+`;
 export default App;

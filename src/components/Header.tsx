@@ -1,6 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 
-function Header() {
+const Header = () => {
   return (
     <HeaderContainer>
       <HeaderWrapper>
@@ -11,7 +12,7 @@ function Header() {
       <HeaderTitle>My Running</HeaderTitle>
     </HeaderContainer>
   );
-}
+};
 
 const HeaderContainer = styled.header`
   display: flex;

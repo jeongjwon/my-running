@@ -1,66 +1,88 @@
-import AddForm from "./AddForm";
-import RunningList from "./RunningList";
-import { useState } from "react";
-// import { BoardContainer, AddBtn } from "./Board.styled";
-import useLocalStorage from "../hooks/useLocalStorage";
-import EditForm from "./EditForm";
+import React, { useState } from "react";
 import styled from "styled-components";
+import AddForm from "./AddForm";
+import List from "./List";
+import EditForm from "./EditForm";
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { openAddModalAction, openEditModalAction } from "../../redux/actions";
+export type Record = {
+  date: string;
+  distance: number;
+  hour: number;
+  minute: number;
+  second: number;
+  perMin: number;
+  perSec: number;
+  id: number;
+};
+type BoardTypes = {
+  records: Record[];
+  setRecords: React.Dispatch<React.SetStateAction<Record[]>>;
+};
 
-function Board({ records, setRecords }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedTask, setEditedTask] = useState("");
+const Board = ({ records, setRecords }: BoardTypes) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [editedTask, setEditedTask] = useState<Record | undefined>(undefined);
 
-  const onInsert = (record) => {
+  const handleAddOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleAddClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleEditOpen = () => {
+    setIsEditing(true);
+  };
+
+  const handleEditClose = () => {
+    setIsEditing(false);
+  };
+  const onInsert = (record: Record) => {
     setRecords((prevState) => [...prevState, record]);
   };
-  const handleModal = () => {
-    setIsOpen(!isOpen);
-  };
-  const onRemove = (id) => {
+
+  const onRemove = (id: number) => {
     setRecords((records) => records.filter((e) => e.id !== id));
   };
 
-  const onUpdate = (record) => {
+  const onUpdate = (record: Record) => {
     setIsEditing(!isEditing);
     setRecords((prevState) =>
       prevState.map((e) => (e.id === record.id ? { ...e, ...record } : e))
     );
   };
 
-  const onEdit = (record) => {
-    setIsEditing(!isEditing);
+  const onEdit = (record: Record) => {
+    // setIsEditing(!isEditing);
+    handleEditOpen();
     setEditedTask(record);
   };
 
-  // const dispatch = useDispatch();
-  // const stateEdit = useSelector((state) => state.editModalReducer);
-
-  // const openAddModalHandler = () => {
-  //   dispatch(openAddModalAction({ isAddOn: true }));
-  // };
-
-  // const stateAdd = useSelector((state) => state.addModalReducer);
-
   return (
     <BoardContainer>
-      <AddBtn onClick={handleModal}>추가하기</AddBtn>
-      {/* <AddBtn onClick={openAddModalHandler}>추가하기</AddBtn>
-      <RunningList records={records} onRemove={onRemove} onEdit={onEdit} /> */}
-      {/* {isOpen && <AddForm onInsert={onInsert} handleModal={handleModal} />} */}
-      {/* {stateAdd.isAddOn && (
-        <AddForm onInsert={onInsert} handleModal={handleModal} />
-      )} */}
-      {isEditing && <EditForm editedTask={editedTask} onUpdate={onUpdate} />}
-      {/* {stateEdit.isEditOn && (
-        <EditForm editedTask={stateEdit.record} onUpdate={onUpdate} />
-      )} */}
+      <AddBtn onClick={handleAddOpen}>추가하기</AddBtn>
+
+      <List records={records} onRemove={onRemove} onEdit={onEdit} />
+      {isOpen && (
+        <AddForm
+          onInsert={onInsert}
+          handleModal={handleAddClose}
+          isOpen={isOpen} // 모달 열림/닫힘 상태를 전달합니다.
+        />
+      )}
+
+      {isEditing && (
+        <EditForm
+          editedTask={editedTask}
+          onUpdate={onUpdate}
+          handleEditClose={handleEditClose}
+        />
+      )}
     </BoardContainer>
   );
-}
+};
 const BoardContainer = styled.div`
   display: flex;
   flex-direction: column;

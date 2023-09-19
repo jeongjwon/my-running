@@ -1,11 +1,38 @@
 import React, { useState } from "react";
 import { format, subMonths, addMonths } from "date-fns";
-import { startOfMonth, startOfWeek, endOfMonth, endOfWeek } from "date-fns";
-import { isSameMonth, isSameDay, addDays, parse } from "date-fns";
+import {
+  startOfMonth,
+  startOfWeek,
+  endOfMonth,
+  endOfWeek,
+  isSameMonth,
+  isSameDay,
+  addDays,
+  parse,
+} from "date-fns";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import Summary from "./Summary";
 import styled from "styled-components";
-const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
+import { Record } from "./Board";
+
+interface RenderHeaderProps {
+  currentMonth: Date;
+  prevMonth: () => void;
+  nextMonth: () => void;
+}
+
+interface RenderCellsProps {
+  records: Record[];
+  currentMonth: Date;
+  selectedDate: Date;
+  onDateClick: (day: Date) => void;
+}
+
+const RenderHeader: React.FC<RenderHeaderProps> = ({
+  currentMonth,
+  prevMonth,
+  nextMonth,
+}) => {
   return (
     <CalendarHeader>
       <button onClick={prevMonth}>
@@ -19,28 +46,32 @@ const RenderHeader = ({ currentMonth, prevMonth, nextMonth }) => {
         </span>
       </div>
       <button onClick={nextMonth}>
-        {/* <Icon icon="bi:arrow-right-circle-fill" onClick={nextMonth}/> */}
         <FaChevronRight />
       </button>
     </CalendarHeader>
   );
 };
 
-const RenderDays = () => {
-  const days = [];
-  const date = ["일", "월", "화", "수", "목", "금", "토"];
+const RenderDays: React.FC = () => {
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
 
-  for (let i = 0; i < 7; i++) {
-    days.push(
-      <div className="col" key={i}>
-        {date[i]}
-      </div>
-    );
-  }
-  return <CalendarDays>{days}</CalendarDays>;
+  return (
+    <CalendarDays>
+      {days.map((day, index) => (
+        <div className="col" key={index}>
+          {day}
+        </div>
+      ))}
+    </CalendarDays>
+  );
 };
 
-const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
+const RenderCells: React.FC<RenderCellsProps> = ({
+  records,
+  currentMonth,
+  selectedDate,
+  onDateClick,
+}) => {
   const recordDay = records.map((record) =>
     Number(record.date.split("-")[1]).toString() === format(currentMonth, "M")
       ? Number(record.date.split("-")[2])
@@ -52,8 +83,8 @@ const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
   const startDate = startOfWeek(monthStart);
   const endDate = endOfWeek(monthEnd);
 
-  const rows = [];
-  let days = [];
+  const rows: JSX.Element[] = [];
+  let days: JSX.Element[] = [];
   let day = startDate;
   let formattedDate = "";
 
@@ -66,15 +97,14 @@ const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
           className={`col cell ${
             !isSameMonth(day, monthStart)
               ? "disabled"
-              : //   : isSameDay(day, selectedDate)
-              recordDay.includes(Number(formattedDate))
+              : recordDay.includes(Number(formattedDate))
               ? "selected"
               : format(currentMonth, "M") !== format(day, "M")
               ? "not-valid"
               : "valid"
           }`}
-          key={day}
-          //   onClick={() => onDateClick(parse(cloneDay))}
+          key={formattedDate}
+          onClick={() => onDateClick(cloneDay)}
         >
           <span
             className={
@@ -90,7 +120,7 @@ const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
       day = addDays(day, 1);
     }
     rows.push(
-      <div className="row" key={day}>
+      <div className="row" key={day.toString()}>
         {days}
       </div>
     );
@@ -99,16 +129,19 @@ const RenderCells = ({ records, currentMonth, selectedDate, onDateClick }) => {
   return <CalendarBody>{rows}</CalendarBody>;
 };
 
-const Calendar = ({ records }) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const Calendar: React.FC<{ records: Record[] }> = ({ records }) => {
+  const [currentMonth, setCurrentMonth] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+
   const prevMonth = () => {
     setCurrentMonth(subMonths(currentMonth, 1));
   };
+
   const nextMonth = () => {
     setCurrentMonth(addMonths(currentMonth, 1));
   };
-  const onDateClick = (day) => {
+
+  const onDateClick = (day: Date) => {
     setSelectedDate(day);
   };
 
@@ -117,6 +150,8 @@ const Calendar = ({ records }) => {
       ? Number(record.date.split("-")[2])
       : 0
   );
+
+  console.log(monthlyRecord);
 
   return (
     <CalendarContainer>
@@ -174,6 +209,7 @@ const CalendarHeader = styled.div`
     }
   }
 `;
+
 const CalendarDays = styled.div`
   font-weight: 600;
   font-size: 1rem;
@@ -192,15 +228,18 @@ const CalendarDays = styled.div`
     justify-content: center;
   }
 `;
+
 const CalendarBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   > .row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0.2rem;
+
     > .col {
       height: 3rem;
       width: 3rem;
@@ -208,21 +247,25 @@ const CalendarBody = styled.div`
       align-items: center;
       justify-content: center;
       font-size: 1rem;
+
       > .not-valid {
         color: #c4c4c4;
       }
     }
+
     > .col.cell.valid:hover {
       cursor: pointer;
       transition: 0.2s ease-in-out;
     }
+
     > .col.cell.selected {
       border-radius: 50%;
-      background-color: #71a686; //#12cd73;//#f3c5b6;
+      background-color: #71a686;
       font-weight: 600;
     }
   }
 `;
+
 const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;

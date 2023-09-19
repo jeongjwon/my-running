@@ -1,37 +1,30 @@
-import { useDispatch, useSelector } from "react-redux";
-// import { ItemContainer, ItemWrapper, BtnZone } from "./Item.styled";
+import React from "react";
 import { HiOutlineTrash, HiOutlinePencilAlt } from "react-icons/hi";
-import { openEditModalAction } from "../redux/actions";
-
 import styled from "styled-components";
+import { Record } from "./Board";
 
-const Item = ({ record, onRemove, onEdit }) => {
-  const { date, distance, time, pace, id } = record;
+type ItemProps = {
+  record: Record; // Record 타입을 적절히 정의해야 합니다.
+  onRemove: (id: number) => void;
+  onEdit: (record: Record) => void;
+};
 
-  const dispatch = useDispatch();
-
-  const openEditModalHanlder = () => {
-    dispatch(
-      openEditModalAction({
-        isEditOn: true,
-        record: record,
-      })
-    );
-  };
-
+const Item: React.FC<ItemProps> = ({ record, onRemove, onEdit }) => {
+  //   const { date, distance, time, pace, id } = record;
+  const { date, distance, hour, minute, perMin, perSec, second } = record;
+  console.log(record);
   return (
     <ItemContainer>
       <ItemWrapper>
         <div className="title_date">{date}</div>
-        <div className="btn_zone">
-          {/* <BtnZone className="edit" onClick={() => onEdit(record)}><HiOutlinePencilAlt size={20}/></BtnZone> */}
-          <BtnZone className="edit" onClick={openEditModalHanlder}>
+        {/* <div className="btn_zone">
+          <BtnZone className="edit" onClick={onEdit}>
             <HiOutlinePencilAlt size={20} />
           </BtnZone>
           <BtnZone className="remove" onClick={() => onRemove(id)}>
             <HiOutlineTrash size={20} />
           </BtnZone>
-        </div>
+        </div> */}
       </ItemWrapper>
       <ItemWrapper>
         <div className="memo">
@@ -39,33 +32,20 @@ const Item = ({ record, onRemove, onEdit }) => {
           <div>Km</div>
         </div>
         <div className="memo">
-          <div>{pace}</div>
+          <div>{`${perMin}'${perSec}"`}</div>
           <div>평균 페이스</div>
         </div>
         <div className="memo">
-          <div>{time}</div>
+          <div>
+            {hour > 0 ? `${hour}:${minute}:${second}` : `${minute}:${second}`}
+          </div>
           <div>총 시간</div>
         </div>
       </ItemWrapper>
-
-      {/* <div className="memo">
-        <div className="memo_dis">
-          <div>{distance}</div>
-          <div>Km</div>
-        </div>
-        <div className="memo_time">
-          <div>{pace}</div>
-          <div>평균 페이스</div>
-        </div>
-        <div className="memo_pace">
-          <div>{time}</div>
-          <div>총 시간</div>
-        </div>
-      </div> */}
     </ItemContainer>
-    // </ItemWrapper>
   );
 };
+
 const ItemWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -78,8 +58,6 @@ const ItemWrapper = styled.div`
   > .memo {
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-end; */
-    /* align-items: center; */
 
     font-weight: 600;
     > :nth-child(2) {
@@ -89,23 +67,15 @@ const ItemWrapper = styled.div`
     }
   }
 `;
+
 const ItemContainer = styled.li`
   box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
   border-radius: 1rem;
   background-color: white;
   padding: 1rem 0.8rem;
   margin: 1rem 0;
-
-  /* > .memo {
-    display: flex;
-    justify-content: space-between;
-    > div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-  } */
 `;
+
 const BtnZone = styled.button`
   border: none;
   background: transparent;
@@ -113,7 +83,7 @@ const BtnZone = styled.button`
 
   > svg:hover {
     color: red;
-    transform: scale(1.3); /* 이미지 확대 */
+    transform: scale(1.3);
     transition: transform 0.5s;
   }
 `;
